@@ -1,0 +1,83 @@
+//start
+float H = 120;
+float L1 = 240;
+float L2 = 120;
+float L3 = 240;
+float W = 10;
+float θ0 = 0;
+float θ1 = 0;
+float θ2 = 0;
+float θ3 = 0;
+float dif = 0.5;
+
+void setup(){
+  size(1600,800,P3D); 
+  camera(480,480,-240,0,0,0,0,0,-1);
+  noStroke(); 
+}
+
+void draw(){
+  background(255);
+  
+  //ceiling
+  fill(120,60,0);
+  box(10000,10000,1);
+ 
+  //base
+  rotateZ(radians(θ0));
+  translate(0,0,-H/2);
+  fill(255,0,0);
+  box(10,10,H);
+  
+  //link 1
+  rotateZ(radians(θ1));
+  translate(0,L1/2-W/2,-H/2-W/2);
+  fill(0,255,0);
+  box(W,L1,W);
+  
+  //link 2
+  //2nd joint
+  translate(0,L1/2+W/2,0);
+  rotateY(radians(θ2));  
+  //2nd joint's center
+  translate(0,0,L2/2-W/2);
+  fill(0,0,255);
+  box(W,W,L2);
+  
+  //link 3
+  //3rd joint
+  translate(0,0,L2/2+W/2);
+  rotateZ(radians(θ3));  
+  //3rd joint's center
+  translate(0,-L3/2+W/2,0);
+  fill(170);
+  box(W,L3,W);
+  
+  if(keyPressed){
+    if(key == 'r'){
+      θ0 = θ0 + dif;
+    }
+    if(key == 'R'){
+      θ0 = θ0 - dif;
+    }
+    if(key == 'g'){
+      θ1 = θ1 + dif;
+    }
+    if(key == 'G'){
+      θ1 = θ1 - dif;
+    }
+    if(key == 'b'){
+      θ2 = θ2 + dif;
+    }
+    if(key == 'B'){
+      θ2 = θ2 - dif;
+    }
+     if(key == 'a'){
+      θ3 = θ3 + dif;
+    }
+    if(key == 'A'){
+      θ3 = θ3 - dif;
+    }
+  }
+}
+//end
